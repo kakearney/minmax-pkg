@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>minmax.m: Returns minimum and maximum across matrix elements</title>
+<meta name="generator" content="MATLAB 24.1">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-08-09">
+<meta name="DC.source" content="tp044fcafc_50fd_4bee_a514_bd783588a34d.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h1>
+<tt>minmax.m</tt>: Returns minimum and maximum across matrix elements</h1>
+<!--introduction-->
+<p>Author: Kelly Kearney</p>
+<p>This repository includes the code for the <tt>[minmax.m]</tt> Matlab function, along with all dependent functions required to run it.</p>
+<p>This is a simple utility that returns the minimum and maximum value of an array across all dimensions. It also allows for options to provide bounds centered on zero, to exclude outliers, and to expand beyond the limits by a fraction of the range.I find this utility very helpful to provide more nuanced control over axis/color limits in plots beyond the defaults, especially when coordinating limits across numerous subplots.</p>
+<!--/introduction-->
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Getting started</a>
+</li>
+<li>
+<a href="#2">Syntax</a>
+</li>
+<li>
+<a href="#3">Description</a>
+</li>
+<li>
+<a href="#4">Contributions</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Getting started</h2>
+<p>
+<b>Prerequisites</b>
+</p>
+<p>This function should run in any version of Matlab. Note that it does conflict with a function of the same name that is part of the Deep Learning Toolbox (both functions can coexist but users should be aware of potential shadowing if this toolbox is installed).</p>
+<p>
+<b>Downloading and installation</b>
+</p>
+<p>This code can be downloaded from <a href="https://github.com/kakearney/minmax-pkg/">Github</a>
+</p>
+<p>
+<b>Matlab Search Path</b>
+</p>
+<p>The following folders need to be added to your Matlab Search path (via <tt>addpath</tt>, <tt>pathtool</tt>, etc.):</p>
+<pre class="language-matlab">minmax-pkg/minmax
+</pre>
+<h2 id="2">Syntax</h2>
+<pre>[minval maxval] = minmax(a)
+lims = minmax(a);
+lims = minmax(a, type);
+lims = minmax(a, type, w);</pre>
+<h2 id="3">Description</h2>
+<p>
+<tt>[minval, maxval] = minmax(a)</tt> <tt>lims = minmax(a)</tt> returns the minimum <tt>minval</tt> and maximum <tt>maxval</tt> across all dimensions of array <tt>a</tt>, ignoring NaNs. If only one output is provided, these values will be returned in a 1 x 2 vector <tt>lims</tt>.</p>
+<p>
+<tt>[...] = minmax(a, 'noout') | </tt>[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that is more than <tt>w</tt> beyond the interquartile range (as in to boxplot outlier calculation). By default, <tt>w</tt> is 1.5.</p>
+<p>
+<tt>[...] = minmax(a, 'center')</tt> returns the minimum and maximim centered on 0, i.e. <tt>[-1 1]*max(abs(minmax(a)))</tt>.</p>
+<p>
+<tt>[...] = minmax(a, 'center')</tt> returns centered bounds after first discarding outliers.</p>
+<p>
+<tt>[...] = minmax(a, 'expand')</tt> <tt>[...] = minmax(a, 'expand', w)</tt> returns bounds expanded by <tt>w</tt> times the total range. By default <tt>w</tt> is 0.1.</p>
+<h2 id="4">Contributions</h2>
+<p>Community contributions to this package are welcome!</p>
+<p>To report bugs, please submit <a href="https://github.com/kakearney/example-pkg/issues">an issue</a> on GitHub and include:</p>
+<div>
+<ul>
+<li>your operating system</li>
+<li>your version of Matlab and all relevant toolboxes (type <tt>ver</tt> at the Matlab command line to get this info)</li>
+<li>code/data to reproduce the error or buggy behavior, and the full text of any error messages received</li>
+</ul>
+</div>
+<p>Please also feel free to submit enhancement requests, or to send pull requests (via GitHub) for bug fixes or new features.</p>
+<p>I do monitor the MatlabCentral FileExchange entry for any issues raised in the comments, but would prefer to track issues on GitHub.</p>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2024a</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% |minmax.m|: Returns minimum and maximum across matrix elements
+% Author: Kelly Kearney
+%
+% This repository includes the code for the |[minmax.m]| Matlab
+% function, along with all dependent functions required to run it.  
+%
+% This is a simple utility that returns the minimum and maximum value of an
+% array across all dimensions.  It also allows for options to provide
+% bounds centered on zero, to exclude outliers, and to expand beyond the
+% limits by a fraction of the range.I find this utility very helpful to
+% provide more nuanced control over axis/color limits in plots beyond the
+% defaults, especially when coordinating limits across numerous subplots. 
+%
+%% Getting started
+%
+% *Prerequisites*
+%
+% This function should run in any version of Matlab.  Note that it does
+% conflict with a function of the same name that is part of the Deep
+% Learning Toolbox (both functions can coexist but users should be aware of
+% potential shadowing if this toolbox is installed).
+%
+% *Downloading and installation*
+%
+% This code can be downloaded from <https://github.com/kakearney/minmax-pkg/ Github>
+%
+% *Matlab Search Path*
+%
+% The following folders need to be added to your Matlab Search path (via
+% |addpath|, |pathtool|, etc.):
+%
+%   minmax-pkg/minmax
+
+%% Syntax
+%
+%  [minval maxval] = minmax(a)
+%  lims = minmax(a);
+%  lims = minmax(a, type);
+%  lims = minmax(a, type, w);
+%
+%% Description
+%
+% |[minval, maxval] = minmax(a)| 
+% |lims = minmax(a)| returns the minimum |minval| and maximum
+% |maxval| across all dimensions of array |a|, ignoring NaNs.  If only one
+% output is provided, these values will be returned in a 1 x 2 vector
+% |lims|.
+%
+% |[...] = minmax(a, 'noout') |
+% |[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that
+% is more than |w| beyond the interquartile range (as in to boxplot
+% outlier calculation).  By default, |w| is 1.5.
+%
+% |[...] = minmax(a, 'center')| returns the minimum and maximim centered on
+% 0, i.e. |[-1 1]*max(abs(minmax(a)))|.
+%
+% |[...] = minmax(a, 'center')| returns centered bounds after first
+% discarding outliers.
+%
+% |[...] = minmax(a, 'expand')|
+% |[...] = minmax(a, 'expand', w)| returns bounds expanded by |w| times the
+% total range.  By default |w| is 0.1.
+
+
+%% Contributions
+%
+% Community contributions to this package are welcome!
+% 
+% To report bugs, please submit
+% <https://github.com/kakearney/example-pkg/issues an issue> on GitHub and
+% include:  
+% 
+% * your operating system
+% * your version of Matlab and all relevant toolboxes (type |ver| at the Matlab command line to get this info)  
+% * code/data to reproduce the error or buggy behavior, and the full text of any error messages received 
+% 
+% Please also feel free to submit enhancement requests, or to send pull
+% requests (via GitHub) for bug fixes or new features. 
+% 
+% I do monitor the MatlabCentral FileExchange entry for any issues raised
+% in the comments, but would prefer to track issues on GitHub. 
+% 
+
+
+##### SOURCE END #####
+-->
+</body>
+</html>
