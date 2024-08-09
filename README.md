@@ -64,10 +64,10 @@ lims = minmax(a, type, w);
 ## Description
 
 
-`[minval, maxval] = minmax(a)` `lims = minmax(a)` returns the minimum `minval` and maximum `maxval` across all dimensions of array `a`, ignoring NaNs. If only one output is provided, these values will be returned in a 1 x 2 vector `lims`.
+`[minval, maxval] = minmax(a)`, `lims = minmax(a)` returns the minimum `minval` and maximum `maxval` across all dimensions of array `a`, ignoring NaNs. If only one output is provided, these values will be returned in a 1 x 2 vector `lims`.
 
 
-`[...] = minmax(a, 'noout') | `[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that is more than `w` beyond the interquartile range (as in to boxplot outlier calculation). By default, `w` is 1.5.
+`[...] = minmax(a, 'noout')`, `[...] = minmax(a, 'noout', w)` discards outliers, defined as a point that is more than `w` beyond the interquartile range (as in to boxplot outlier calculation). By default, `w` is 1.5.
 
 
 `[...] = minmax(a, 'center')` returns the minimum and maximim centered on 0, i.e. `[-1 1]*max(abs(minmax(a)))`.
@@ -76,7 +76,7 @@ lims = minmax(a, type, w);
 `[...] = minmax(a, 'center')` returns centered bounds after first discarding outliers.
 
 
-`[...] = minmax(a, 'expand')` `[...] = minmax(a, 'expand', w)` returns bounds expanded by `w` times the total range. By default `w` is 0.1.
+`[...] = minmax(a, 'expand')`, `[...] = minmax(a, 'expand', w)` returns bounds expanded by `w` times the total range. By default `w` is 0.1.
 
 
 
@@ -86,7 +86,7 @@ lims = minmax(a, type, w);
 Community contributions to this package are welcome!
 
 
-To report bugs, please submit [an issue](https://github.com/kakearney/example-pkg/issues) on GitHub and include:
+To report bugs, please submit [an issue](https://github.com/kakearney/minmax-pkg/issues) on GitHub and include:
 
 
 

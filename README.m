@@ -40,14 +40,12 @@
 %
 %% Description
 %
-% |[minval, maxval] = minmax(a)| 
-% |lims = minmax(a)| returns the minimum |minval| and maximum
+% |[minval, maxval] = minmax(a)|, |lims = minmax(a)| returns the minimum |minval| and maximum
 % |maxval| across all dimensions of array |a|, ignoring NaNs.  If only one
 % output is provided, these values will be returned in a 1 x 2 vector
 % |lims|.
 %
-% |[...] = minmax(a, 'noout') |
-% |[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that
+% |[...] = minmax(a, 'noout')|, |[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that
 % is more than |w| beyond the interquartile range (as in to boxplot
 % outlier calculation).  By default, |w| is 1.5.
 %
@@ -57,8 +55,7 @@
 % |[...] = minmax(a, 'center')| returns centered bounds after first
 % discarding outliers.
 %
-% |[...] = minmax(a, 'expand')|
-% |[...] = minmax(a, 'expand', w)| returns bounds expanded by |w| times the
+% |[...] = minmax(a, 'expand')|, |[...] = minmax(a, 'expand', w)| returns bounds expanded by |w| times the
 % total range.  By default |w| is 0.1.
 
 
@@ -67,7 +64,7 @@
 % Community contributions to this package are welcome!
 % 
 % To report bugs, please submit
-% <https://github.com/kakearney/example-pkg/issues an issue> on GitHub and
+% <https://github.com/kakearney/minmax-pkg/issues an issue> on GitHub and
 % include:  
 % 
 % * your operating system

@@ -10,7 +10,7 @@ To make changes, update the MATLAB code and republish this document.
 <meta name="generator" content="MATLAB 24.1">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
 <meta name="DC.date" content="2024-08-09">
-<meta name="DC.source" content="tp044fcafc_50fd_4bee_a514_bd783588a34d.m">
+<meta name="DC.source" content="tpd64f4836_481f_44cc_ac50_12574fc99d3d.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
@@ -123,18 +123,18 @@ lims = minmax(a, type);
 lims = minmax(a, type, w);</pre>
 <h2 id="3">Description</h2>
 <p>
-<tt>[minval, maxval] = minmax(a)</tt> <tt>lims = minmax(a)</tt> returns the minimum <tt>minval</tt> and maximum <tt>maxval</tt> across all dimensions of array <tt>a</tt>, ignoring NaNs. If only one output is provided, these values will be returned in a 1 x 2 vector <tt>lims</tt>.</p>
+<tt>[minval, maxval] = minmax(a)</tt>, <tt>lims = minmax(a)</tt> returns the minimum <tt>minval</tt> and maximum <tt>maxval</tt> across all dimensions of array <tt>a</tt>, ignoring NaNs. If only one output is provided, these values will be returned in a 1 x 2 vector <tt>lims</tt>.</p>
 <p>
-<tt>[...] = minmax(a, 'noout') | </tt>[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that is more than <tt>w</tt> beyond the interquartile range (as in to boxplot outlier calculation). By default, <tt>w</tt> is 1.5.</p>
+<tt>[...] = minmax(a, 'noout')</tt>, <tt>[...] = minmax(a, 'noout', w)</tt> discards outliers, defined as a point that is more than <tt>w</tt> beyond the interquartile range (as in to boxplot outlier calculation). By default, <tt>w</tt> is 1.5.</p>
 <p>
 <tt>[...] = minmax(a, 'center')</tt> returns the minimum and maximim centered on 0, i.e. <tt>[-1 1]*max(abs(minmax(a)))</tt>.</p>
 <p>
 <tt>[...] = minmax(a, 'center')</tt> returns centered bounds after first discarding outliers.</p>
 <p>
-<tt>[...] = minmax(a, 'expand')</tt> <tt>[...] = minmax(a, 'expand', w)</tt> returns bounds expanded by <tt>w</tt> times the total range. By default <tt>w</tt> is 0.1.</p>
+<tt>[...] = minmax(a, 'expand')</tt>, <tt>[...] = minmax(a, 'expand', w)</tt> returns bounds expanded by <tt>w</tt> times the total range. By default <tt>w</tt> is 0.1.</p>
 <h2 id="4">Contributions</h2>
 <p>Community contributions to this package are welcome!</p>
-<p>To report bugs, please submit <a href="https://github.com/kakearney/example-pkg/issues">an issue</a> on GitHub and include:</p>
+<p>To report bugs, please submit <a href="https://github.com/kakearney/minmax-pkg/issues">an issue</a> on GitHub and include:</p>
 <div>
 <ul>
 <li>your operating system</li>
@@ -194,14 +194,12 @@ lims = minmax(a, type, w);</pre>
 %
 %% Description
 %
-% |[minval, maxval] = minmax(a)| 
-% |lims = minmax(a)| returns the minimum |minval| and maximum
+% |[minval, maxval] = minmax(a)|, |lims = minmax(a)| returns the minimum |minval| and maximum
 % |maxval| across all dimensions of array |a|, ignoring NaNs.  If only one
 % output is provided, these values will be returned in a 1 x 2 vector
 % |lims|.
 %
-% |[...] = minmax(a, 'noout') |
-% |[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that
+% |[...] = minmax(a, 'noout')|, |[...] = minmax(a, 'noout', w)| discards outliers, defined as a point that
 % is more than |w| beyond the interquartile range (as in to boxplot
 % outlier calculation).  By default, |w| is 1.5.
 %
@@ -211,8 +209,7 @@ lims = minmax(a, type, w);</pre>
 % |[...] = minmax(a, 'center')| returns centered bounds after first
 % discarding outliers.
 %
-% |[...] = minmax(a, 'expand')|
-% |[...] = minmax(a, 'expand', w)| returns bounds expanded by |w| times the
+% |[...] = minmax(a, 'expand')|, |[...] = minmax(a, 'expand', w)| returns bounds expanded by |w| times the
 % total range.  By default |w| is 0.1.
 
 
@@ -221,7 +218,7 @@ lims = minmax(a, type, w);</pre>
 % Community contributions to this package are welcome!
 % 
 % To report bugs, please submit
-% <https://github.com/kakearney/example-pkg/issues an issue> on GitHub and
+% <https://github.com/kakearney/minmax-pkg/issues an issue> on GitHub and
 % include:  
 % 
 % * your operating system
