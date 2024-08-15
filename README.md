@@ -73,7 +73,7 @@ lims = minmax(a, type, w);
 `[...] = minmax(a, 'center')` returns the minimum and maximim centered on 0, i.e. `[-1 1]*max(abs(minmax(a)))`.
 
 
-`[...] = minmax(a, 'center')` returns centered bounds after first discarding outliers.
+`[...] = minmax(a, 'centernoout')` returns centered bounds after first discarding outliers.
 
 
 `[...] = minmax(a, 'expand')`, `[...] = minmax(a, 'expand', w)` returns bounds expanded by `w` times the total range. By default `w` is 0.1.
